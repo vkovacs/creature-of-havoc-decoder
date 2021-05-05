@@ -4,4 +4,4 @@ for Fighting fantasy book: [Creature of Havoc](https://en.wikipedia.org/wiki/Cre
 Decoding rules:
 * Remove all spaces
 * Replace vowels to space  
-* Substitute consonants to the previous vowel in the alphabet (B->A)
+* Vowels from the original text are substituted for the next consonant in alphabetic order (a -> b, u -> v). Undo this transformation.

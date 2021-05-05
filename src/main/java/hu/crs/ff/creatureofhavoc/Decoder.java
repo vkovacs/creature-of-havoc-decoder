@@ -1,10 +1,15 @@
 package hu.crs.ff.creatureofhavoc;
 
+import java.util.Arrays;
 import java.util.stream.Collector;
 
 public class Decoder {
     public static void main(String[] args) {
+        var decoder = new Decoder();
 
+        Arrays.stream(args)
+                .map(decoder::decode)
+                .forEach(System.out::println);
     }
 
     String decode(String cipherText) {
