@@ -1,16 +1,14 @@
 package hu.crs.ff.creatureofhavoc;
 
-import java.util.Set;
+import java.util.stream.Collector;
 
 public class Decoder {
-    private Set<String> vowels = Set.of("a", "e", "i", "o",  "u");
-
     public static void main(String[] args) {
 
     }
 
     String decode(String cipherText) {
-        return cipherText;
+        return replaceConsonants(replaceVowels(removeSpaces(cipherText)));
     }
 
     public String removeSpaces(String string) {
@@ -18,7 +16,33 @@ public class Decoder {
     }
 
     public String replaceVowels(String string) {
-        String vowelsConcatenated = String.join(" ", vowels);
-        return string.replaceAll("["+ vowelsConcatenated +"]+", " ");
+        return string.replaceAll("[aeiou]", " ");
+    }
+
+    public String replaceConsonants(String text) {
+        return text.chars()
+                .mapToObj(c -> (char) c)
+                .map(this::replace)
+                .collect(Collector.of(
+                        StringBuilder::new,
+                        StringBuilder::append,
+                        StringBuilder::append,
+                        StringBuilder::toString));
+    }
+
+    private char replace(char letter) {
+        return switch (letter) {
+            case 'b' -> 'a';
+            case 'B' -> 'B';
+            case 'f' -> 'e';
+            case 'F' -> 'E';
+            case 'j' -> 'i';
+            case 'J' -> 'j';
+            case 'p' -> 'o';
+            case 'P' -> 'O';
+            case 'v' -> 'u';
+            case 'V' -> 'U';
+            default -> letter;
+        };
     }
 }

@@ -16,4 +16,16 @@ class DecoderTest {
         var decoder = new Decoder();
         Assertions.assertEquals("l l l ", decoder.replaceVowels("lalala"));
     }
+
+    @Test
+    void replaceConsonants() {
+        var decoder = new Decoder();
+        Assertions.assertEquals("au", decoder.replaceConsonants("bv"));
+    }
+
+    @Test
+    void decode() {
+        var decoder = new Decoder();
+        Assertions.assertEquals("You get the hang oe them aeter a while!", decoder.decode("Yp vugfte t hfehbn ga pfoth f mebftf rebawh jlf!"));
+    }
 }
